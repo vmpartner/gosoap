@@ -76,8 +76,6 @@ func (c *Client) Call(m string, p Params) (err error) {
 		return err
 	}
 
-	fmt.Print(string(c.payload))
-
 	b, err := c.doRequest(c.Definitions.Services[0].Ports[0].SoapAddresses[0].Location)
 	if err != nil {
 		return err
