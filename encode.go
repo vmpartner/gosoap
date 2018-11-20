@@ -65,7 +65,7 @@ func recursiveEncode(hm interface{}) {
 			t := xml.StartElement{
 				Name: xml.Name{
 					Space: "",
-					Local: key.String(),
+					Local: "data:" + key.String(),
 				},
 			}
 
@@ -93,6 +93,7 @@ func startEnvelope() {
 			{Name: xml.Name{Space: "", Local: "xmlns:xsi"}, Value: "http://www.w3.org/2001/XMLSchema-instance"},
 			{Name: xml.Name{Space: "", Local: "xmlns:xsd"}, Value: "http://www.w3.org/2001/XMLSchema"},
 			{Name: xml.Name{Space: "", Local: "xmlns:soap"}, Value: "http://schemas.xmlsoap.org/soap/envelope/"},
+			{Name: xml.Name{Space: "", Local: "xmlns:data"}, Value: "Data"},
 		},
 	}
 
@@ -177,7 +178,7 @@ func startBody(m, n string) error {
 	r := xml.StartElement{
 		Name: xml.Name{
 			Space: "",
-			Local: m,
+			Local: "data:" + m,
 		},
 		Attr: []xml.Attr{
 			{Name: xml.Name{Space: "", Local: "xmlns"}, Value: n},
@@ -201,7 +202,7 @@ func endBody(m string) {
 	r := xml.EndElement{
 		Name: xml.Name{
 			Space: "",
-			Local: m,
+			Local: "data:" + m,
 		},
 	}
 
